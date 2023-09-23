@@ -65,10 +65,55 @@ The call above should return the tree below:
 
 ***********************************************************************/
 
-const makeTree = (categories, parent) => {
-  // Your code here 
+const makeTree = (categories, key) => {
+    let object = {};
+    let keys = Object.keys(categories);
+    let values = Object.values(categories);
+
+    if(categories.length === 0){
+        return {};
+    }
+
+    for(let item in categories){
+        if(categories[item].parent === key){
+            object[categories[item].id] = {};
+            //remove anything in categories with key of parent value
+            categories.shift();
+            key = categories[item].id;
+            // console.log("HIT")
+            // console.log(key);
+            console.log(object)
+            object[makeTree(categories, key)] = {};
+            return object;
+        }
+
+        // if(categories.item === parent){
+        //     let index = values.indexOf(categories.item)
+        //     parent = keys[index];
+
+        //     object.item.parent === parent
+        // }
+    }
+
+
 };
 
+const categories1 = [
+    { id: 'animals', 'parent': null },
+    { id: 'mammals', 'parent': 'animals' }
+];
+
+// We should return a tree like this:
+
+// {
+//   animals: {
+//     mammals: {}
+//   }
+// }
+
+const tree1 = makeTree(categories1, null);
+
+console.log(tree1);
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 module.exports = makeTree;
 
