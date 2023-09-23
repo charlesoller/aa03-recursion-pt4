@@ -22,24 +22,26 @@ sort([]); // []
 ***********************************************************************/
 
 function sort(nums, sorted = []) {
-    if (nums.length === 0) return sorted;
 
-    let least = {index: 0, value: nums[0]};
-    for (let i = 1; i < nums.length; i++){
-        if(nums[i] < least.value) {
-            least.index = i;
-            least.value = nums[i];
-        }
-    }
-    nums.splice(least.index, 1);
-    sorted.push(least.value);
-
-    return sort(nums, sorted);
 }
 
 console.log(sort([4,1,6,3,1,7])); // [1, 1, 3, 4, 6, 7]
 console.log(sort([0, 1, -3])); // [-3, 0, 1]
 console.log(sort([])); // []
 
+
+    // if (nums.length === 0) return sorted;
+
+    // let least = {index: 0, value: nums[0]};
+    // for (let i = 1; i < nums.length; i++){
+    //     if(nums[i] < least.value) {
+    //         least.index = i;
+    //         least.value = nums[i];
+    //     }
+    // }
+    // nums.splice(least.index, 1);
+    // sorted.push(least.value);
+
+    // return sort(nums, sorted);
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 module.exports = sort;
