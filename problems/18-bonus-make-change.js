@@ -55,11 +55,60 @@ solution so that it only calculates and compares all of the different
 combinations.
 ***********************************************************************/
 
-function makeBetterChange(target, coins = [25, 10, 5, 1]) {
-  // Your code here 
+
+
+function helper(target, coins) {
+  for (let j = 0; j < coins.length; j++) {
+    if (target % coins[j] === 0 && coins[j] != 1) {
+      return true
+    }
+  }
+  return false
 }
 
 
+function makeBetterChange(target, coins = [25, 10, 5, 1]) {
+  console.log(target)
+  finalArr = []
+  let length = finalArr.length
+  if (target === 0) {
+    return finalArr
+  }
+  for (let i = 0; i < coins.length; i++) {
+    let coin = coins[i]
+    if (coin <= target) {
+      let temp = target - coin
+      if (helper(temp, coins) === true) {
+        finalArr.push(coin)
+        target -= coin
+        break
+      }
+    }
+  }
+  if (length === finalArr.length) {
+    return null
+  }
+  return finalArr.concat(makeBetterChange(target, coins))
+}
+
+
+//obj {}
+// for in loop coins
+//key is coin
+// if statement ,  coins < target
+// obj.coin = 1
+
+
+
+
+
+
+
+// console.log(greedy(21)) // [1, 10, 10]
+// console.log(greedy(75)) // [25, 25, 25]
+// console.log(greedy(33, [15, 3])) // [3, 15, 15]
+// console.log(greedy(34, [15, 3])) // null
+// console.log(greedy(24, [10, 7, 1])) // [7, 7, 10]
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
   module.exports = makeBetterChange
